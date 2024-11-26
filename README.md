@@ -14,7 +14,7 @@ Este projeto é uma API RESTful para gerenciar produtos, criada usando **Spring 
   - [Criar Produto](#criar-produto)
   - [Deletar Produto](#deletar-produto)
 - [Como Executar](#como-executar)
-- [Contribuições](#contribuições)
+
 
 ---
 
