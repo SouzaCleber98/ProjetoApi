@@ -95,7 +95,7 @@ src/main/java
     └── LojaApplication.java             # Classe principal
 ```
 
-## Endpoints da API
+## Endpoints
 
 #### **1. Listar Produtos**
 - **Descrição:** Retorna todos os produtos cadastrados no banco de dados.
