@@ -4,6 +4,7 @@ import com.exemplo.empresa.loja.model.Produto;
 import com.exemplo.empresa.loja.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.Map;
 
 import java.util.List;
 
@@ -28,4 +29,15 @@ public class ProdutoController {
     public void deletar(@PathVariable Long id) {
         service.deletar(id);
     }
+
+    @PutMapping("/{id}")
+public Produto atualizar(@PathVariable Long id, @RequestBody Produto produtoAtualizado) {
+    return service.atualizar(id, produtoAtualizado);
+}
+
+@PatchMapping("/{id}")
+public Produto atualizarParcial(@PathVariable Long id, @RequestBody Map<String, Object> campos) {
+    return service.atualizarParcial(id, campos);
+}
+
 }

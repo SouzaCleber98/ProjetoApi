@@ -4,8 +4,14 @@ import com.exemplo.empresa.loja.model.Produto;
 import com.exemplo.empresa.loja.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Map; // Para Map
+import java.lang.reflect.Field; // Para manipulação de campos via reflexão
+import org.springframework.util.ReflectionUtils; // Utilitário do Spring para reflexão
+
 
 import java.util.List;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 @Service//Indica que essa classe é um componente de serviço do Spring.
 public class ProdutoService {
@@ -51,4 +57,33 @@ Usado por: O método deletar() no ProdutoController.
     public void deletar(Long id) {
         repository.deleteById(id);
     }
+//Para atualizar o recurso inteiro.
+    public Produto atualizar(Long id, Produto produtoAtualizado) {
+        Produto produtoExistente = repository.findById(id)
+            .orElseThrow(() -> new NoSuchElementException("Produto não encontrado"));
+    
+        produtoExistente.setNome(produtoAtualizado.getNome());
+        produtoExistente.setPreco(produtoAtualizado.getPreco());
+        produtoExistente.setQuantidade(produtoAtualizado.getQuantidade());
+    
+        return repository.save(produtoExistente);
+    }
+   // Para atualizar apenas campos específicos.
+   public Produto atualizarParcial(Long id, Map<String, Object> campos) {
+    Produto produtoExistente = repository.findById(id)
+        .orElseThrow(() -> new NoSuchElementException("Produto não encontrado"));
+
+    // Atualiza apenas os campos fornecidos no Map
+    campos.forEach((campo, valor) -> {
+        Field field = ReflectionUtils.findField(Produto.class, campo);
+        if (field != null) {
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, produtoExistente, valor);
+        }
+    });
+
+    return repository.save(produtoExistente);
+}
+
+
 }
