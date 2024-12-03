@@ -13,6 +13,8 @@ Este projeto é uma API RESTful para gerenciar produtos, criada usando **Spring 
   - [Listar Produtos](#listar-produtos)
   - [Criar Produto](#criar-produto)
   - [Deletar Produto](#deletar-produto)
+  -  [Atualizar Produto](#Atualizar-Produto)
+  -  [Atualizar Produto Parcialmente](#Atualizar-Produto-Parcialmente)
 - [Como Executar](#como-executar)
 
 
@@ -97,7 +99,7 @@ src/main/java
 
 ## Endpoints
 
-#### **1. Listar Produtos**
+1. #### Listar Produtos
 - **Descrição:** Retorna todos os produtos cadastrados no banco de dados.
 - **Método:** GET
 - **URL:** /api/produtos
@@ -121,7 +123,7 @@ src/main/java
 ]
 ```
 
-#### **2. Criar Produto**
+2. #### Criar Produto
 
 - **Descrição:** Adiciona um novo produto ao banco de dados.
 - **Método:** POST
@@ -147,13 +149,45 @@ src/main/java
 }
 ```
 
-#### **3. Deletar Produto**
+3. #### Deletar Produto
 - **Descrição:** Remove um produto existente com base no seu ID.
 - **Método:** DELETE
 - **URL:** /api/produtos/{id}
 - **Exemplo:**
 - **Requisição:** DELETE /api/produtos/3
 - **Resposta de Sucesso (204 No Content)**: Nenhum conteúdo retornado, indicando que o produto foi removido.
+
+
+
+4. #### Atualizar Produto 
+- **Descrição:** Substitui completamente um produto existente no banco de dados.
+- **Método:** PUT
+- **URL:** `/api/produtos/{id}`
+- **Exemplo de Requisição:**
+```json
+
+{
+    "nome": "Teclado Mecânico RGB",
+    "preco": 350.00,
+    "quantidade": 15
+}
+```
+**Resposta de Sucesso (200 OK)**
+
+5. #### Atualizar Produto Parcialmente 
+- **Descrição:** Atualiza apenas os campos especificados de um produto existente.
+- **Método:** PATCH
+- **URL:** `/api/produtos/{id}`
+- **Exemplo de Requisição:**
+```json
+
+{
+    "preco": 200.00
+}
+```
+**Resposta de Sucesso (200 OK)**
+
+
 - ---
 
 ## Exemplo de Requisições no Postman
@@ -180,6 +214,36 @@ Clique em **Send** e verifique a resposta.
 - Escolha o método **DELETE**.
 - Use a URL: `http://localhost:8080/api/produtos/1`
 - Substitua `1` pelo ID do produto que deseja deletar.
+- Clique em **Send**.
+
+#### **4. Atualizar Produto  (PUT)**
+- Escolha o método **PUT**.
+- Use a URL: `http://localhost:8080/api/produtos/1`
+- Substitua `1` pelo ID do produto que deseja Atualizar.
+- No **Body**, insira o seguinte JSON:
+```json
+
+{
+    "nome": "Cadeira ",
+    "preco": 800.00,
+    "quantidade": 3
+}
+```
+- Clique em **Send**.
+
+- #### **5. Atualizar Produto Parcialmente (PATCH)**
+- Escolha o método **PATCH**.
+- Use a URL: `http://localhost:8080/api/produtos/1`
+- Substitua `1` pelo ID do produto que deseja Atualizar.
+- No **Body**, insira o seguinte JSON:
+
+
+```json
+
+{
+    "preco": 200.00
+}
+```
 - Clique em **Send**.
 
 ## Testando o Banco H2
