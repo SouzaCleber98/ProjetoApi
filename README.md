@@ -102,7 +102,7 @@ src/main/java
 1. #### Listar Produtos
 - **Descrição:** Retorna todos os produtos cadastrados no banco de dados.
 - **Método:** GET
-- **URL:** /api/produtos
+- **URL:** `/api/produtos`
 - **Resposta de Sucesso (200 OK):**
 
 ```json
@@ -127,7 +127,7 @@ src/main/java
 
 - **Descrição:** Adiciona um novo produto ao banco de dados.
 - **Método:** POST
-- **URL:** /api/produtos
+- **URL:** `/api/produtos`
 - **Corpo da Requisição (JSON):**
 ```json
 
@@ -152,7 +152,7 @@ src/main/java
 3. #### Deletar Produto
 - **Descrição:** Remove um produto existente com base no seu ID.
 - **Método:** DELETE
-- **URL:** /api/produtos/{id}
+- **URL:** `/api/produtos/{id}`
 - **Exemplo:**
 - **Requisição:** DELETE /api/produtos/3
 - **Resposta de Sucesso (204 No Content)**: Nenhum conteúdo retornado, indicando que o produto foi removido.
